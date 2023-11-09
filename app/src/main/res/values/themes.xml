@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.YelpMeFind" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.YelpMeFind" parent="Base.Theme.YelpMeFind" />
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+
+        <item name="android:textColorHint">#752929</item>
+    </style>
+
+
+</resources>
