@@ -1,11 +1,14 @@
 package com.example.yelpmefind
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class ApiResponse(
     @SerializedName("businesses")
     val businesses: List<Business>
     )
 
+@Parcelize
 data class Business(
     val id: String,
     val name: String,
@@ -19,13 +22,15 @@ data class Business(
     val location: Location,
     val phone: String,
     val distance: Double
-)
+) : Parcelable
 
+@Parcelize
 data class Category(
     val alias: String,
     val title: String
-)
+) : Parcelable
 
+@Parcelize
 data class Location(
     val address1: String,
     val address2: String?,
@@ -35,4 +40,4 @@ data class Location(
     val state: String,
     @SerializedName("display_address")
     val displayAddress: List<String>
-)
+) : Parcelable

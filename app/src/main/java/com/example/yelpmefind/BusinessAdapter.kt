@@ -1,6 +1,7 @@
 package com.example.yelpmefind
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,18 +29,40 @@ RecyclerView.Adapter<BusinessAdapter.BusinessViewHolder>() {
 
         holder.businessNameTextView.text = business.name
         holder.ratingTextView.text = business.rating.toString()
-        holder.milesTextView.text = "${business.distance} miles"
+        holder.addressTextView.text = business.location.address1 + ", " + business.location.city
     }
+
+
 
     override fun getItemCount(): Int {
         return businessList.size
     }
 
-    inner class BusinessViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class BusinessViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
         val businessNameTextView: TextView = itemView.findViewById(R.id.businessNameTV)
         val ratingTextView: TextView = itemView.findViewById(R.id.textView)
-        val milesTextView: TextView = itemView.findViewById(R.id.milesTV)
+        val addressTextView: TextView = itemView.findViewById(R.id.addressTV)
+
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(view: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                val selectedBusiness = businessList[position]
+                val intent = Intent(context, DetailsActivity::class.java).apply {
+                    putExtra("business", selectedBusiness)
+                }
+                context.startActivity(intent)
+            }
+        }
+
     }
+
+
+
 
 }
